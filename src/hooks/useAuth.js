@@ -1,10 +1,22 @@
-import { useContext } from "react";
-import { AuthContext } from "../contexts/auth";
+import { useEffect, useState } from 'react';
 
-const useAuth = () => {
-  const context = useContext(AuthContext);
 
-  return context;
-};
+export default function useAuth() {
+  const [authenticated, setAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-export default useAuth;
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    console.log(token)
+
+    if (token.length > 0) {
+      setAuthenticated(true);
+      console.log(authenticated)
+    }
+
+    setLoading(false);
+  }, []);
+  
+  return { authenticated, loading };
+}
