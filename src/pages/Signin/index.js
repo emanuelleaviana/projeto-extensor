@@ -22,6 +22,7 @@ const Signin = () => {
       const response = await axios.post('https://nodejs-calcados-api-production.up.railway.app/api/auth/login/', form);
 
       if(response.data.token) {
+        localStorage.setItem('token', response.data.token);
         navigate('/home');
       }
     }
