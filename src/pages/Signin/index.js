@@ -20,7 +20,6 @@ const Signin = () => {
   async function handleLogin() {
     if(form.registration.length > 0 && form.password.length > 0) {
       const response = await axios.post('https://nodejs-calcados-api-production.up.railway.app/api/auth/login/', form);
-      console.log(response.data);
 
       if(response.data.token) {
         navigate('/home');
