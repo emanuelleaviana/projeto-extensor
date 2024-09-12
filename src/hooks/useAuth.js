@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 export default function useAuth() {
@@ -16,7 +16,7 @@ export default function useAuth() {
     }
 
     setLoading(false);
-  }, []);
+  }, [authenticated]);
   
   return { authenticated, loading };
 }
