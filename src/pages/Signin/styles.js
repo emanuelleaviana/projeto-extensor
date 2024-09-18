@@ -23,10 +23,14 @@ export const Content = styled.div`
   border-radius: 5px;
 `;
 
-export const Label = styled.label`
-  font-size: 18px;
-  font-weight: 600;
-  color: #676767;
+export const Logo = styled.img`
+  width: 150px; 
+  height: 150px; 
+  background-image: url('../../assets/logo.png');
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  margin-bottom: 50px;
 `;
 
 export const LabelSignup = styled.label`
