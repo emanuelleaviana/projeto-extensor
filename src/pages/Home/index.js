@@ -13,9 +13,14 @@ const Home = () => {
   return (
     <C.Container>
       <C.Title>Home</C.Title>
-      <Button Text="Sair" onClick={() => [signout(), navigate("/signin")]}>
-        Sair
-      </Button>
+      <Button 
+        Text="Cadastrar Novo Usuário" 
+        onClick={() => [navigate("/usuarios/novo-usuario")]}
+      ></Button>
+      <Button 
+        Text="Sair" 
+        onClick={() => [signout(), navigate("/signin")]}
+      ></Button>
     </C.Container>
   );
 };
