@@ -9,6 +9,11 @@ export const Container = styled.div`
   height: 100vh;
 `;
 
+export const P = styled.div`
+  color: red;
+  font-size: 0.75rem;
+`;
+
 export const Content = styled.div`
   gap: 15px;
   display: flex;
@@ -24,13 +29,13 @@ export const Content = styled.div`
 `;
 
 export const Logo = styled.img`
-  width: 150px; 
-  height: 150px; 
+  width: 200px; 
+  height: 200px; 
   background-image: url('../../assets/logo.png');
   background-size: cover;
   background-position: center;
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: -35px;
 `;
 
 export const LabelSignup = styled.label`

@@ -1,17 +1,18 @@
+import axios from "axios";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import logo from "../../assets/logo.png";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import * as C from "./styles";
-import   
- axios from "axios";
-import logo from "../../assets/logo.png";
 
 const Signin = () => {
   const [form, setForm] = useState({
     registration: "",
     password: "",
   });
+
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -25,12 +26,17 @@ const Signin = () => {
       const response = await axios.post(
         "https://nodejs-calcados-api-production.up.railway.app/api/auth/login/",
         form
+      ).then(
+        response => {
+          if (response.data.token) {
+            localStorage.setItem("token", response.data.token);
+            navigate("/home");
+          }
+      }).catch(
+        error => {
+          setErrorMessage(error.response.data.error);
+        }
       );
-
-      if (response.data.token) {
-        localStorage.setItem("token", response.data.token);
-        navigate("/home");
-      }
     }
   }
 
@@ -52,13 +58,8 @@ const Signin = () => {
           onChange={handleChange}
           value={form.password}
         />
+        <C.P>{errorMessage}</C.P>
         <Button Text="Entrar" onClick={handleLogin} />
-        <C.LabelSignup>
-          Não tem uma conta?
-          <C.Strong>
-            <Link to="/signup">&nbsp;Registre-se</Link>
-          </C.Strong>
-        </C.LabelSignup>
       </C.Content>
     </C.Container>
   );
