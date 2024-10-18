@@ -2,10 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: start;
   flex-direction: column;
-  gap: 10px;
   height: 100vh;
 `;
 
@@ -21,7 +18,7 @@ export const Success = styled.p`
 
 export const H1 = styled.h1`
     color: #046ee5;
-    font-size: 1.4rem;
+    font-size: 18px;
     white-space: nowrap;
     text-align: center;
     font-weight: 700;
@@ -39,6 +36,8 @@ export const Content = styled.div`
   max-width: 350px;
   padding: 20px;
   border-radius: 5px;
+  place-self: center;
+  margin-top: 40px;
 `;
 
 export const Logo = styled.img`
@@ -68,4 +67,11 @@ export const Strong = styled.strong`
     text-decoration: none;
     color: #676767;
   }
+`;
+
+export const RowContainer = styled.div`
+  display: flex;
+  align-items: center; 
+  gap: 10px;
+  width: 100%;
 `;
