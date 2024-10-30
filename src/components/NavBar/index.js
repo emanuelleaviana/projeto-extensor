@@ -1,7 +1,7 @@
-import React from "react";
+import { faBox, faFile, faHistory, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBox , faFile, faUser, faSignOutAlt, faHistory  } from '@fortawesome/free-solid-svg-icons';
-import * as C from "./styles"; 
+import React from "react";
+import * as C from "./styles";
 
 const Navbar = ({ onNavigate }) => (
   
@@ -9,7 +9,7 @@ const Navbar = ({ onNavigate }) => (
     <C.NavItem onClick={() => onNavigate("/home")}>
       <FontAwesomeIcon icon={faFile} />
     </C.NavItem>
-    <C.NavItem onClick={() => onNavigate("/usuarios/novo-usuario")}>
+    <C.NavItem onClick={() => onNavigate("/usuarios")}>
       <FontAwesomeIcon icon={faUser} />
     </C.NavItem>
     <C.NavItem onClick={() => onNavigate("/estoque")}>

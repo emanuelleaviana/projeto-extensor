@@ -5,7 +5,10 @@ export const Navbar = styled.nav`
   justify-content: space-around; 
   background-color: #007bff; 
   padding: 10px 0;
+  width: 100%;
   height: 50px;
+  position: absolute;
+  bottom: 0px;
 `;
 
 export const NavItem = styled.div`

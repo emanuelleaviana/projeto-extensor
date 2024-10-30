@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom
 import Home from "../pages/Home";
 import Signin from "../pages/Signin";
 import Signup from "../pages/Signup";
+import UserTable from "../pages/users";
 import NewUser from "../pages/users/new-user";
 
 function isAuthenticated() {
@@ -22,6 +23,7 @@ const RoutesApp = () => {
         <Routes>
           <Route path="/" element={<ProtectedRoute />}>
             <Route path="/home" element={<Home />} />
+            <Route path="/usuarios" element={<UserTable />} />
             <Route path="/usuarios/novo-usuario" element={<NewUser />} />
           </Route>
             <Route path="/signin" element={<Signin />} />
