@@ -122,7 +122,6 @@ const NewUser = () => {
       <C.Container>
         <C.Content>
           <C.H1>{registration ? 'Editar Usuário' : 'Cadastrar Novo Usuário'}</C.H1>
-          <p onClick={()=>{console.log(form)}}>asjdkjsj</p>
           <Input
             type="text"
             label={'CPF'}
