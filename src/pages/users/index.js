@@ -11,7 +11,7 @@ const UserTable = () => {
   const [users, setUsers] = useState([]);
 
   function navigateNewUser() {
-    navigate('cadastrar-usuario')
+    navigate('novo-usuario')
   }
 
   // Substitua este array de dados de exemplo com sua lógica de obtenção de dados
