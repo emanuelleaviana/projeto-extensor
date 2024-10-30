@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as C from "./styles";
 import Header from "../../components/Header";
@@ -6,29 +6,77 @@ import Navbar from "../../components/NavBar";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import Select from "../../components/Select";
+import axios from "axios";
 
 const Home = () => {
   const navigate = useNavigate();
 
+  const [roles, setRoles] = useState([]);
   const [form, setForm] = useState({
     codigo: "",
-    nome: "",
+    name: "",
     descricao: "",
-    categoria: "",
+    category_id: 1,
     quantidade: "",
     preco: ""
   });
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = localStorage.getItem('token');
+      await axios.get('https://nodejs-calcados-api-production.up.railway.app/api/users/roles', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then(response => {
+        console.log('token', token)
+        response = response.data.map(item => {
+          return { value: item.role_id, label: item.name };
+        });
+        setRoles(response);
+      });
+    };
+    fetchData();
+  }, []);
+
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
   const categories = [
-    { value: 'plataforma', label: 'Plataforma' },
-    { value: 'rasteirinha', label: 'Rasteirinha' },
-    { value: 'salto', label: 'Salto' },
-    { value: 'tenis', label: 'Tênis' },
-    { value: 'bota', label: 'Bota' },
+    { value: 0, label: 'Plataforma' },
+    { value: 1, label: 'Rasteirinha' },
+    { value: 2, label: 'Salto' },
+    { value: 3, label: 'Tênis' },
+    { value: 4, label: 'Bota' },
   ];
 
-  function handleChange(event) {
-    setForm({ ...form, [event.target.name]: event.target.value });
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+  
+    const newValue = name === 'category_id' ? Number(value) : value;
+  
+    setForm((prevForm) => ({
+      ...prevForm,
+      [name]: newValue,
+    }));
+  };
+  
+
+  async function teste() {
+    const response = await axios.post(
+      "https://nodejs-calcados-api-production.up.railway.app/api/manage/products/register",
+      form, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
+    ).then(
+      response => {
+        setTimeout(() => {
+          navigate('/home');
+        }, 3000);
+      }).catch(
+        error => {
+          setErrorMessage(error.response.data.error);
+        }
+      );
   }
 
   return (
@@ -49,10 +97,10 @@ const Home = () => {
           <Input
             type="text"
             label={'Nome'}
-            name="nome"
+            name="name"
             placeholder="Digite o nome"
             onChange={handleChange}
-            value={form.nome}
+            value={form.name}
             labelPosition="side"
           />
           <Input
@@ -68,8 +116,8 @@ const Home = () => {
           />
          <Select
             label="Categoria"
-            name="categoria"
-            value={form.categoria}
+            name="category_id"
+            value={form.category_id}
             onChange={handleChange}
             options={categories}
             labelPosition="side" 
@@ -93,9 +141,10 @@ const Home = () => {
             labelPosition="side"
           />
 
-          <Button Text="Cadastrar" onClick={console.log("boa")} />
+          <Button Text="Cadastrar" onClick={teste} />
         </C.Content>
       </C.Container>
+
       <Navbar onNavigate={navigate} />
     </C.Container>
   );
