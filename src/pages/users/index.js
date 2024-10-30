@@ -69,7 +69,7 @@ const UserTable = () => {
                   <C.TableCell style={{whiteSpace: "nowrap"}}>{user.phone}</C.TableCell>
                   <C.TableCell>{user.role}</C.TableCell>
                   <C.TableCell>{user.is_active === true ? "Ativo" : "Inativo"}</C.TableCell>
-                  <C.TableCell><FontAwesomeIcon icon={faPenToSquare} onClick={navigateNewUser}/></C.TableCell>
+                  <C.TableCell><FontAwesomeIcon icon={faPenToSquare} onClick={() => navigate(`editar-usuario/${user.registration}`)}/></C.TableCell>
                   <C.TableCell><FontAwesomeIcon icon={faTrash} onClick={() => deleteUser(user.registration)}/></C.TableCell>
                   </C.TableRow>
               ))}

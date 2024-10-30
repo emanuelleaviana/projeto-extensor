@@ -25,6 +25,7 @@ const RoutesApp = () => {
             <Route path="/home" element={<Home />} />
             <Route path="/usuarios" element={<UserTable />} />
             <Route path="/usuarios/novo-usuario" element={<NewUser />} />
+            <Route path="/usuarios/editar-usuario/:registration" element={<NewUser />} />
           </Route>
             <Route path="/signin" element={<Signin />} />
           <Route exact path="/signup" element={<Signup />} />

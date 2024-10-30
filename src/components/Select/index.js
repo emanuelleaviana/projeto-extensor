@@ -1,5 +1,5 @@
 import React from 'react';
-import * as C from "./styles"; 
+import * as C from "./styles";
 
 const Select = ({ label, name, value, options, onChange, labelPosition }) => {
   return (
