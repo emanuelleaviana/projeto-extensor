@@ -69,13 +69,9 @@ const NewUser = () => {
           form, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
         ).then(
           response => {
-            if (response.data.success) {
-              setErrorMessage('');
-              setSuccessMessage(response.data.success);
-              setTimeout(() => {
-                navigate('/usuarios');
-              }, 3000);
-            }
+            setTimeout(() => {
+              navigate('/usuarios');
+            }, 3000);
           }).catch(
             error => {
               setErrorMessage(error.response.data.error);

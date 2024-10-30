@@ -1,3 +1,5 @@
+import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -14,22 +16,31 @@ const UserTable = () => {
     navigate('novo-usuario')
   }
 
-  // Substitua este array de dados de exemplo com sua lógica de obtenção de dados
-  useEffect(() => {
-    const fetchData = async () => {
-      // Busca o token fora do useEffect e o atualiza quando o localStorage mudar
-      const token = localStorage.getItem('token');
-      console.log(token);
-      await axios.get('https://nodejs-calcados-api-production.up.railway.app/api/users', {
+  async function deleteUser(id) {
+    const token = localStorage.getItem('token');
+      await axios.delete(`https://nodejs-calcados-api-production.up.railway.app/api/users/delete-user/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       })
       .then(response => {
-        // Extraia os dados da resposta
-        setUsers(response.data); // Assumindo que a API retorna os usuários em `response.data`
+        fetchData();
       });
-    };
+  }
+
+  const fetchData = async () => {
+    const token = localStorage.getItem('token');
+    await axios.get('https://nodejs-calcados-api-production.up.railway.app/api/users', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      setUsers(response.data);
+    });
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -58,6 +69,8 @@ const UserTable = () => {
                   <C.TableCell style={{whiteSpace: "nowrap"}}>{user.phone}</C.TableCell>
                   <C.TableCell>{user.role}</C.TableCell>
                   <C.TableCell>{user.is_active === true ? "Ativo" : "Inativo"}</C.TableCell>
+                  <C.TableCell><FontAwesomeIcon icon={faPenToSquare} onClick={navigateNewUser}/></C.TableCell>
+                  <C.TableCell><FontAwesomeIcon icon={faTrash} onClick={() => deleteUser(user.registration)}/></C.TableCell>
                   </C.TableRow>
               ))}
               </C.TableBody>
