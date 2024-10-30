@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import * as C from "./styles";
-import Header from "../../components/Header";
-import Navbar from "../../components/NavBar";
-import Input from "../../components/Input";
-import Button from "../../components/Button";
-import Select from "../../components/Select";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Button from "../../components/Button";
+import Header from "../../components/Header";
+import Input from "../../components/Input";
+import Navbar from "../../components/NavBar";
+import Select from "../../components/Select";
+import * as C from "./styles";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -44,11 +44,11 @@ const Home = () => {
   const [successMessage, setSuccessMessage] = useState("");
 
   const categories = [
-    { value: 0, label: 'Plataforma' },
-    { value: 1, label: 'Rasteirinha' },
-    { value: 2, label: 'Salto' },
-    { value: 3, label: 'Tênis' },
-    { value: 4, label: 'Bota' },
+    { value: 1, label: 'Plataforma' },
+    { value: 2, label: 'Rasteirinha' },
+    { value: 3, label: 'Salto' },
+    { value: 4, label: 'Tênis' },
+    { value: 5, label: 'Bota' },
   ];
 
   const handleChange = (event) => {
