@@ -5,6 +5,7 @@ import Signup from "../pages/Signup";
 import StockPage from "../pages/stock";
 import UserTable from "../pages/users";
 import NewUser from "../pages/users/new-user";
+import RequestOrder from "../pages/RequestOrder";
 
 function isAuthenticated() {
   const token = localStorage.getItem('token');
@@ -28,6 +29,7 @@ const RoutesApp = () => {
             <Route path="/usuarios/novo-usuario" element={<NewUser />} />
             <Route path="/usuarios/editar-usuario/:registration" element={<NewUser />} />
             <Route path="/estoque" element={<StockPage />} />
+            <Route path="/historico" element={<RequestOrder />} />
           </Route>
             <Route path="/signin" element={<Signin />} />
           <Route exact path="/signup" element={<Signup />} />
